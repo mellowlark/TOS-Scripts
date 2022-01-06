@@ -1,0 +1,11 @@
+#Dollar Volume Scan
+#hahn-tech.com
+# https://www.hahn-tech.com/ans/day-dollar-volume-scanner/
+#Converts volume to dollars so you scan based on dollar ammount.
+#i.e. one $1000 share is = 10 $100 shares.
+def totalDollars = volume * close;
+def averageTotalDollars = Average(totalDollars, 20);
+# use this to scan for current day total dollars greater than 1 million
+plot scan = totalDollars > 1000000;
+# use this to scan for 20 day average of total dollars greater than 1 million
+#plot scan = averageTotalDollars > 1000000;
