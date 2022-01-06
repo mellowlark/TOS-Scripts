@@ -1,0 +1,18 @@
+#Mark Minervini's rules to test that an uptrend is in tact.
+#For scanning
+#lufecaep
+#1.6.2022
+#Converted to TOS from:
+#https://www.prorealcode.com/prorealtime-market-screeners/trend-template-mark-minervini/
+#Note can be a little confusing if not using the same moving averages on chart
+def ma50=Average(close, 50);
+def ma150=Average(close, 150);
+def ma200=average(close, 200);
+def hh = HighestAll(high);
+def ll = LowestAll(low);
+dev m1 = close > ma50;
+def m2 = ma50 > ma150;
+def m3 = ma150 > ma200;
+def c1 = close/hh > 0.75;
+def c2 = close/ll > 1.3;
+plot trendOK = m1 and m2 and m3 and c1 and c2;
