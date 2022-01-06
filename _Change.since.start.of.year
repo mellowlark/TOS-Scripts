@@ -1,0 +1,8 @@
+#Change since start of year
+#https://www.hahn-tech.com/ans/display-year-to-date-percent-change/
+# only works on daily time frame.
+def startOfYear = GetYear() <> GetYear()[1];
+rec startingClose = if startOfYear then close[1] else startingClose[1];
+plot percentChange = 100 * (close / startingClose – 1);
+#This colors stuff based on percentage.
+percentChange.AssignValueColor(if percentChange > 1.0 then Color.BLACK else if percentChange < -1.0 then Color.BLACK else Color.CURRENT); AssignBackgroundColor(if percentChange > 1.0 then Color.GREEN else if percentChange < -1.0 then Color.RED else Color.CURRENT);
