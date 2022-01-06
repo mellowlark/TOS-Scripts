@@ -1,0 +1,19 @@
+# EMA Convergence Scan
+#https://usethinkscript.com/threads/scan-for-price-touching-moving-average-in-thinkorswim.1214/
+# tomsk
+# 12.5.2019
+# Scan for convergence between EMA 8,13,21
+
+input length1 = 8;
+input length2 = 21;
+input length3 = 200;
+
+def ema1  = ExpAverage(close, length1);
+def ema2  = ExpAverage(close, length2);
+def ema3  = ExpAverage(close, length3);
+
+def cond1  = between(ema1, close * .995, close * 1.005);
+def cond2  = between(ema2, close * .995, close * 1.005);
+def cond3  = between(ema3, close * .995, close * 1.005);
+
+plot scan = cond2 + cond3;
