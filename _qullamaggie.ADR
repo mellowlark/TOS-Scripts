@@ -1,0 +1,18 @@
+#Average Daily Range (according to qullamaggie's rules)
+#lufecaep (converted from qullamaggie's example)
+#1.6.2022
+#Seems to look for stocks with a consistently large spread between close and open.
+#Suggesting the stock will move up and down more each day.
+#Meaning you will make more when you catch a trend.
+# https://qullamaggie.com/faq/
+# look for faq on ADR
+#below 3 is slow, above 15 is really fast.
+
+input HI = high;
+input LO = low;
+input length = 20;
+def ADR1 = (fold n = 0 to length with a do a + ((getValue(HI/LO, n, length))));
+def ADR2 = Round(100 * (ADR1/length -1),2);
+plot scan = ADR2 > 3;
+# remove plot and uncomment to use as a chart label:
+#AddLabel(yes,"ADR " + ADR2, GetColor(Label_Color_Choice));
