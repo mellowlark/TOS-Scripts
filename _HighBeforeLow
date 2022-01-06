@@ -1,0 +1,18 @@
+# Mobius (from TOS sub on reddit)
+# V01.11.29.2021
+#editid to remove several new lines.
+#Finds the Highest High on the chart and puts a bubble and the lowest low that occurs after the high.
+def x = barNumber();
+def h = high;
+def l = low;
+def c = close;
+def nan = double.nan;
+def hh = highestAll(h);
+def hhx = if h == hh then x else hhx[1];
+#Use for chart
+#plot hh_ = if x >= highestAll(hhx) then highestAll(if isNaN(c[-1]) then hh else nan) else nan;
+#Use for column and probably for scan
+def hh_ = if x >= highestAll(hhx) then highestAll(if isNaN(c[-1]) then hh else nan) else nan;
+def ll = if x == highestAll(hhx) then l else if l < ll[1] then l else ll[1];
+def llx = if l == ll then x else llx[1];
+def ll_ = if x >= highestAll(llx) then highestAll(if isNaN(c[-1]) then ll else nan) else nan;
