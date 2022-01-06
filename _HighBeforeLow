@@ -1,7 +1,8 @@
-# Mobius (from TOS sub on reddit)
+# Mobius
 # V01.11.29.2021
-#editid to remove several new lines.
-#Finds the Highest High on the chart and puts a bubble and the lowest low that occurs after the high.
+# https://www.reddit.com/r/thinkorswim/comments/r3qgt6/looking_for_script_that_finds_the_most_recent_low/
+#Edited from original to remove several new lines.
+#Finds the Highest High on the chart and puts a bubble at the lowest low that occurs after the high.
 def x = barNumber();
 def h = high;
 def l = low;
