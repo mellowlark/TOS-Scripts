@@ -1,9 +1,12 @@
 #Stockbee 4 percent breakout
+#lufecaep
+#01/07/21
 # https://stockbee.blogspot.com/2015/11/how-to-use-4-breakout-scan-to-make-money.html
 #run in AM when market opens.
 # detects stocks breaking out on higher volume from yesterday's close.
 
 def oc = open/close[1];
+def ocy = open[1]/close[2];
 def cv = volume;
 def pv = volume[1];
-plot sp = oc > 1.04 and oc < 1.08 and cv > pv and cv > 100000;
+plot sp = oc > 1.04 and oc < 1.9 and ocy < 1.02 and cv > pv and cv > 100000;
