@@ -1,0 +1,16 @@
+def sa = average(close, 7);
+def la = average(close, 65);
+plot scan = sa/la > 1.5;
+
+#I have this saved as the TI65 but it doesn't appear to be correct:
+input aggregationPeriod = AggregationPeriod.DAY;
+input l1 = 7;
+input l2 = 65;
+def open = open(period = aggregationPeriod);
+def HI = high(period = aggregationPeriod);
+def LO = low(period = aggregationPeriod);
+def dayrange = (HI - LO);
+def PMAs = (fold m = 0 to l1 with r do r + ((getValue(HI-LO, m, l1))/l1));
+def PMAl = (fold n = 0 to l2 with s do s + ((getValue(HI-LO, n, l2))/l2));
+def TI65 = PMAs/PMAl;
+plot scand = TI65 > 1.05;
