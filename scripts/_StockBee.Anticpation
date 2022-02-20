@@ -1,12 +1,14 @@
 #https://www.youtube.com/watch?v=R3H_tIpfY0Y&ab_channel=Stockbee
 # lufecaep
-# 2/17/22
+# 2/17/22, 2/20/22
 
-# Up .05% over 3 months.
-def sevenday=Average(close, 7);
-def threemonth=Average(close, 65);
-# 1% range last 3 days (consolodating)
-def a=((close[1]/open[1])-1)*100;
-def b=((close[21]/open[2])-1)*100;
-def c=((close[3]/open[3])-1)*100;
-plot scan  =sevenday/threemonth >= 1.03 and a < 1 and a > -1 and b < 1 and b > -1 and c < 1 and c > -1;
+#Stock Bee less than 1% change last 3 days
+input x=2;
+input pc=3;
+def aa = x;
+def bb = aa+1;
+def cc = bb+1;
+def a=AbsValue(((close[aa]/open[aa])-1)*100);
+def b=AbsValue(((close[bb]/open[bb])-1)*100);
+def c=AbsValue(((close[cc]/open[cc])-1)*100);
+plot scan = a < pc and b < pc and c < pc;
