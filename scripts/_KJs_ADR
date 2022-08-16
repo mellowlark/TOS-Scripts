@@ -1,0 +1,24 @@
+declare upper;
+input len = 20;
+def ADR_perc = 100 * (Average(high, len) / Average(low, len) -1);
+AddLabel(yes,"ADR: "+ADR_perc+"% ", Color.GREEN);
+
+#Average True Range
+
+def value = Round(ATR(length=20), 2);
+AddLabel(yes, "ATR: $" + value + " ", Color.GREEN);
+
+input AggregationPeriod = AggregationPeriod.DAY;
+
+def highVal = high(period = AggregationPeriod);
+def lowVal = low(period = AggregationPeriod);
+
+
+def diff = Round(highVal - lowVal, 2);
+def firstATR = value / 3;
+def secondATR = 2 * (value / 3);
+
+AddLabel(
+    yes,
+    "Today's ATR: $" + diff + " ", if diff < firstATR then Color.GREEN else if diff >= firstATR and diff < secondATR then Color.YELLOW else if diff >= secondATR and diff < value then Color.ORANGE else Color.LIGHT_RED
+    );
