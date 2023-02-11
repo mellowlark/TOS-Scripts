@@ -1,0 +1,35 @@
+# EMA Convergence Scan
+# tomsk
+# 12.5.2019
+
+# Scan for convergence between EMA
+input length1 = 10;
+input length2 = 20;
+input length3 = 50;
+#Deviation values
+input lower = .99;
+input higher = 1.01;
+
+#ADR Weeds out slow moving stocks. 4 is reccomended minimum. 
+def HI = high;
+def LO = low;
+def ADR1 = (fold n = 0 to length2 with a do a + ((getValue(HI/LO, n, length2))));
+def ADR2 = Round(100 * (ADR1/length2 -1),2);
+# End ADR
+
+def ema1  = ExpAverage(close, length1);
+def ema2  = ExpAverage(close, length2);
+def ema3  = ExpAverage(close, length3);
+
+
+def cond1  = between(ema1, close * lower, close * higher);
+def cond2  = between(ema2, close * lower, close * higher);
+def cond3  = between(ema3, close * lower, close * higher);
+
+def cl = between(close, 60, 61);
+plot scan = ADR2 > 3 and  cond1 and cond2 and cond3;
+
+#the plus sign didn't work
+#plot scan = cond1 + cond2 + cond3;
+# End EMA Convergence Scan
+
